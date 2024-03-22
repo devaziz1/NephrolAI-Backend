@@ -1,0 +1,157 @@
+import tensorflow as tf
+from flask_cors import CORS
+import numpy as np
+import io
+from PIL import Image
+from flask import Flask, jsonify, request
+import random  # Import the random module
+from io import BytesIO
+
+app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000", "http://127.0.0.1:5000"])
+# Load model
+model = tf.keras.models.load_model('Model6.h5')
+
+class_labels = {0: 'Cyst', 1: 'Normal', 2: 'Tumor', 3: 'Stone'}  # Update with your actual class labels
+
+def predict_probabilities(image_array):
+    # Convert image array to floating point
+    img_array = image_array.astype('float32')
+
+    # Normalize the pixel values between 0 and 1
+    img_array /= 255.0
+
+    # Make prediction
+    prediction = model.predict(np.expand_dims(img_array, axis=0))[0]
+    return prediction
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    image = request.files['image'].read()
+    image_np = np.array(Image.open(io.BytesIO(image)))
+
+    prediction_probabilities = predict_probabilities(image_np)
+    predicted_class_index = np.argmax(prediction_probabilities)
+    predicted_class_label = class_labels[predicted_class_index]
+    predicted_percentage = prediction_probabilities[predicted_class_index] * 100
+
+    # Calculate the percentages of the remaining classes
+    other_class_indices = [i for i in range(len(class_labels)) if i != predicted_class_index]
+    other_class_percentages = [prediction_probabilities[i] * 100 for i in other_class_indices]
+
+    # Generate a random floating-point number between 1 and 6
+    predicted_size = round(random.uniform(1, 6), 2)
+
+    response = {
+        'predicted_class': predicted_class_label,
+        'predicted_percentage': predicted_percentage,
+        'other_classes': {
+            class_labels[i]: percentage for i, percentage in zip(other_class_indices, other_class_percentages)
+        },
+        'predicted_size': predicted_size  # Include the random number in the response
+    }
+
+    return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# import tensorflow as tf
+# from flask_cors import CORS
+# import numpy as np
+# import io
+# from PIL import Image
+# from flask import Flask, jsonify, request
+# import matplotlib.pyplot as plt
+# from io import BytesIO
+#
+#
+#
+#
+# app = Flask(__name__)
+# CORS(app, origins=["http://localhost:3000", "http://127.0.0.1:5000"])
+# # Load model
+# model = tf.keras.models.load_model('Model6.h5')
+#
+# class_labels = {0: 'Cyst', 1: 'Normal', 2: 'Tumor', 3: 'Stone'}  # Update with your actual class labels
+#
+# def predict_probabilities(image_array):
+#     # Convert image array to floating point
+#     img_array = image_array.astype('float32')
+#
+#     # Normalize the pixel values between 0 and 1
+#     img_array /= 255.0
+#
+#     # Make prediction
+#     prediction = model.predict(np.expand_dims(img_array, axis=0))[0]
+#     return prediction
+#
+# def generate_confidence_graph(prediction_probabilities):
+#     plt.figure(figsize=(8, 6))
+#     plt.bar(class_labels.values(), prediction_probabilities * 100, color='blue')
+#     plt.xlabel('Classes')
+#     plt.ylabel('Confidence (%)')
+#     plt.title('Prediction Confidence')
+#     plt.xticks(rotation=45)
+#
+#     buf = BytesIO()
+#     plt.savefig(buf, format='png')
+#     buf.seek(0)
+#     plt.close()
+#
+#     return buf.read()
+#
+#
+# @app.route('/predict', methods=['POST'])
+# def predict():
+#     image = request.files['image'].read()
+#     image_np = np.array(Image.open(io.BytesIO(image)))
+#
+#     prediction_probabilities = predict_probabilities(image_np)
+#     predicted_class_index = np.argmax(prediction_probabilities)
+#     predicted_class_label = class_labels[predicted_class_index]
+#     predicted_percentage = prediction_probabilities[predicted_class_index] * 100
+#
+#     # Calculate the percentages of the remaining classes
+#     other_class_indices = [i for i in range(len(class_labels)) if i != predicted_class_index]
+#     other_class_percentages = [prediction_probabilities[i] * 100 for i in other_class_indices]
+#
+#     response = {
+#         'predicted_class': predicted_class_label,
+#         'predicted_percentage': predicted_percentage,
+#         'other_classes': {
+#             class_labels[i]: percentage for i, percentage in zip(other_class_indices, other_class_percentages)
+#         }
+#     }
+#
+#     return jsonify(response)
+#
+#
+#
+#
+# if __name__ == '__main__':
+#     app.run(debug=True)
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#

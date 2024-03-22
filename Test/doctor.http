@@ -1,0 +1,81 @@
+############# Doctor login
+POST http://localhost:8080/doctor/login
+Content-Type: application/json
+
+{
+"email":"newd123@gmail.com",
+"password":"1234"
+}
+
+############# Doctor Update Schedule
+PUT http://localhost:8080/doctor/updateSchedule
+Content-Type: application/json
+
+{
+"email":"drrohail21@gmail.com",
+"day" : "Friday",
+"timings":["1:00 - 1:30 PM"]
+}
+
+############# Doctor My Slots
+GET http://localhost:8080/doctor/myslots?email=drmustafa123@gmail.com&day=Monday
+
+
+############# Doctor Get Appiontments
+GET http://localhost:8080/doctor/appiontments/drrohail21@gmail.com
+
+
+############# Doctor profile
+GET http://localhost:8080/doctor/profile/newd123@gmail.com
+
+############# Doctor's Prescription
+POST http://localhost:8080/doctor/createPrescription
+Content-Type: application/json
+
+{
+"doctorEmail":"newd123@gmail.com",
+"patientEmail":"Uzaiadmin4893@gmail.com",
+"description":"Some prescription description ",
+"dosage":"2-1-3",
+"medicineName":"Panadol",
+"startDate":"Tue Aug 15 2023 00:00:00 GMT+0500 ",
+"endDate":"Thu Aug 17 2023 00:00:00 GMT+0500 "
+}
+
+#################### DOCTOR ==> get All Patient
+GET http://localhost:8080/doctor/getAllPatients/643de1dc1574ede74f6ec540
+
+
+#################### Patient ==> get  PDF Reports
+GET http://localhost:8080/doctor/getreports/newd123@gmail.com
+
+
+############# Provide Feedback
+POST http://localhost:8080/doctor/provideFeedback
+Content-Type: application/json
+
+{
+"doctorEmail":"newd123@gmail.com",
+"patientEmail":"UzairAziz4893@gmail.com",
+"description": "Feedback from doctor",
+"reportID":"032"
+
+}
+
+#################### Doctor ==> get  Profile
+GET http://localhost:8080/doctor/getProfile/drsania099@gmail.com
+
+##################### update doctor
+PATCH http://localhost:8080/doctor/updatePorfile
+Content-Type: application/json
+
+{
+   "name":"Sania Naseer",
+    "oldpassword":"sania1234",
+    "newPass":"sania123",
+    "email":"drsania099@gmail.com",
+    "LN":"jsha872",
+    "phoneNumber":"0313648866",
+    "gender":"Female"
+
+}

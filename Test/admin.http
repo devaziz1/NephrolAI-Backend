@@ -1,0 +1,180 @@
+####### Admin Signup
+
+POST http://localhost:8080/admin/signup
+Content-Type: application/json
+
+{
+    "name":"Aziz Naseer",
+    "password":"admin",
+    "email":"NephrolAI@gmail.com"
+
+}
+
+############# Admin login
+POST http://localhost:8080/admin/login
+Content-Type: application/json
+
+{
+"email":"NephrolAI@gmail.com",
+"password":"admin"
+}
+
+#################### ADMIN ==> get Profile
+GET http://localhost:8080/admin/profile
+
+
+############# Admin Search Doctor
+GET http://localhost:8080/admin/doctor/search/hheello
+
+############# Admin Search Patient
+GET http://localhost:8080/admin/patient/search/Waqassaleem3@gmail.com
+
+####### Doctor SignUp
+
+
+POST http://localhost:8080/admin/doctor/signup
+Content-Type: application/json
+
+{
+    "name":"Dr Mustafa",
+    "password":"12345",
+    "email":"drmustafa123@gmail.com",
+     "specialization":"Nephrologist",
+    "medicalLicenseNo":"72132saq",
+    "gender":"Male",
+    "phoneNumber":"03364111954"
+
+}
+
+
+############# Doctor login
+POST http://localhost:8080/admin/doctor/login
+Content-Type: application/json
+
+{
+"email":"Abdullah372@gmail.com"
+}
+
+##################### update doctor
+PATCH http://localhost:8080/admin/doctor/update
+Content-Type: application/json
+
+{
+  "name":"Dr.Rohaill",
+    "password":"331371",
+    "email":"Rohail09@gmail.com",
+     "specialization":"Nephrologist",
+    "medicalLicenseNo":"723",
+    "gender":"Malee",
+    "phoneNumber":"012872621431"
+
+}
+
+
+#################### ADMIN ==> get All Doctor
+GET http://localhost:8080/admin/getAllDoctor/6463e56b2621ab5034d067d8
+
+##################### delete doctor
+DELETE  http://localhost:8080/admin/doctor/delete/umair521@gmail.com
+
+####### Patient SignUp
+
+POST http://localhost:8080/admin/patient/signup
+Content-Type: application/json
+
+{
+    "name":"Waqas Saleem",
+    "password":"waqas123",
+    "email":"waqassaleem99@gmail.com",
+    "medical_history":"Hypertension",
+    "phoneNumber":"03306556466",
+    "gender":"Male"
+
+}
+
+############# Patient login
+POST http://localhost:8080/admin/Patient/login
+Content-Type: application/json
+
+{
+"email":"Awais21@gmail.com"
+}
+
+##################### update doctor
+PATCH http://localhost:8080/admin/patient/Aupdate
+Content-Type: application/json
+
+{
+   "name":"ALI  Hussain",
+    "password":"87236",
+    "email":"IeSAsa21@gmail.com",
+    "medical_history":"Allergic to penicillin",
+    "phoneNumber":"0313648866",
+    "gender":"Malee"
+
+}
+
+#################### ADMIN ==> get All Patient
+GET http://localhost:8080/admin/getAllPatient/6463e56b2621ab5034d067d8
+
+##################### delete doctor
+DELETE  http://localhost:8080/admin/patient/delete/AzizNaseer231@gmail.com
+
+
+#################### View All complaints
+GET http://localhost:8080/admin/getAllCompaint
+
+#################### GET COMPLANIT BODY
+GET http://localhost:8080/admin/getComplaintBody/64cc19fd174065ba4925fe7a
+
+
+##################### delete complaint
+DELETE  http://localhost:8080/admin/deleteComplaint/64ceb99c18892214ae92bde7
+
+############# Admin Search complaint
+GET http://localhost:8080/admin/searchCom/UzairNase3@gmail.com
+
+############# Cookies Request
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+"name":"admin",
+"password":"SE7"
+}
+
+
+##################### delete Complaint
+DELETE  http://localhost:8080/admin/deleteComplaint/UzairNaseer@gmail.com
+
+############# Admin create session
+POST http://localhost:8080/admin/createSession
+Content-Type: application/json
+
+{
+"name":"admin",
+"password":"SE7"
+
+}
+
+############# Admin get profile
+GET http://localhost:8080/admin/profile/admin001@gmail.com
+
+############# Admin Dashboard Details
+GET http://localhost:8080/admin/dashboardDetails
+
+##################### update admin
+PATCH http://localhost:8080/admin/updateProfile
+Content-Type: application/json
+
+{
+   "name":"Uzair Naseer",
+    "oldpassword":"admin",
+    "newPass":"admin23"
+}
+
+############# Update Monthly reports
+POST http://localhost:8080/admin/updateMonthlyReport
+
+############# GET Monthly reports Date
+GET http://localhost:8080/admin/getMonthlyReportCounts

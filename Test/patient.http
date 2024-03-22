@@ -1,0 +1,126 @@
+####### Patient SignUp
+
+POST http://localhost:8080/patient/signup
+Content-Type: application/json
+
+{
+     "name":"Afnan Malik",
+    "password":"87236",
+    "email":"AfnanMalik@gmail.com",
+    "medical_history":"Allergic to penicillin",
+    "phoneNumber":"0313648866",
+    "gender":"Male"
+
+}
+
+
+############# Patient login
+POST http://localhost:8080/patient/login
+Content-Type: application/json
+
+{
+"email":"waqassaleem99@gmail.com",
+"password":"waqas123"
+}
+
+############# Create Appointment
+POST http://localhost:8080/patient/createAppointment
+Content-Type: application/json
+
+{
+"email":"uzair1122@gmail.com",
+"doctorEmail":"drrohail21@gmail.com",
+"slot":"12:30 - 1:00 PM",
+"createdAt": "2023-09-30",
+"type":"Online",
+"status":"Physical"
+}
+
+
+####### Make Appointment
+
+POST http://localhost:8080/patient/makeAppointment
+Content-Type: application/json
+
+{
+    "type":"Online",
+    "status":"Completed",
+    "doctorID":"6465539dc81287f0c274a0ad"
+
+}
+
+#################### Patient ==> get All Pending Appointments
+GET http://localhost:8080/patient/getAllPendingApp/6465539dc81287f0c274a0ad
+
+
+#######  Make Complaint
+
+POST http://localhost:8080/patient/submitComplaint
+Content-Type: application/json
+
+{
+    "email":"UzairNaseer123@gmail.com",
+    "description":"website 66 performance is very low frontend",
+    "compainner":"Patient"
+
+}
+
+
+### submit feedback
+POST http://localhost:8080/patient/submitFeedback
+Content-Type: application/json
+
+{
+    "doctorEmail": "example123@gmail.com",
+    "rating" : 1
+
+}
+
+#################### Patient ==> get All Prescriptions
+GET http://localhost:8080/patient/getPrescriptions/UzairAziz4893@gmail.com
+
+
+#################### Patient ==> get  Prescriptions by ID
+GET http://localhost:8080/patient/getPrescriptionsById/64d6b43593b3badb530cf21e
+
+##################### delete Prescription
+DELETE  http://localhost:8080/patient/deletePrescription/64d6b4d193b3badb530cf222
+
+##################### delete Appointment
+DELETE  http://localhost:8080/patient/deleteApp/64c68b03b340438125c627dd
+
+
+#################### Patient ==> get  PDF Reports
+GET http://localhost:8080/patient/getreports/UzairAziz4893@gmail.com
+
+
+#################### Patient ==> get  Profile
+GET http://localhost:8080/patient/getProfile/UzairAziz4893@gmail.com
+
+##################### update Pstient
+PATCH http://localhost:8080/patient/updateProfile
+Content-Type: application/json
+
+{
+   "name":"Aziz Naseer",
+    "oldpassword":"123",
+    "newPass":"12345",
+    "email":"UzairAziz4893@gmail.com",
+    "medical_history":"Allergic to penicillin",
+    "phoneNumber":"0313648866",
+    "gender":"Male"
+
+}
+
+##################### update Pstient
+PATCH http://localhost:8080/patient/cancelApp/6564e1e3247ca10e39cab793
+
+
+############# Doctor Get Appiontments
+GET http://localhost:8080/patient/appiontments/UzairAziz4893@gmail.com
+
+############# Get All feedback
+GET http://localhost:8080/patient/getfeedback/UzairAziz4893@gmail.com
+
+############# Get All feedback
+GET http://localhost:8080/patient/getFeedbackbyID/64f8480aed9434c4cc6d1553
